@@ -1,0 +1,17 @@
+﻿  main.cpp
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(48,19): error C2131: wyrażenie nie zostało obliczone do stałej
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(48,15): message : przyczyną niepowodzenia był odczyt zmiennej poza jej okresem istnienia
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(48,15): message : zobacz użycie elementu „len”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(52,20): error C2131: wyrażenie nie zostało obliczone do stałej
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(52,16): message : przyczyną niepowodzenia był odczyt zmiennej poza jej okresem istnienia
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(52,16): message : zobacz użycie elementu „len”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(57,18): error C3863: nie można przydzielać typu tablicy „char [len+1]”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(155,21): error C2131: wyrażenie nie zostało obliczone do stałej
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(155,17): message : przyczyną niepowodzenia był odczyt zmiennej poza jej okresem istnienia
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(155,17): message : zobacz użycie elementu „len”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(160,21): error C2131: wyrażenie nie zostało obliczone do stałej
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(160,17): message : przyczyną niepowodzenia był odczyt zmiennej poza jej okresem istnienia
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(160,17): message : zobacz użycie elementu „len”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(172,47): error C3863: nie można przydzielać typu tablicy „char [len+1]”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(174,47): error C3863: nie można przydzielać typu tablicy „char [len+1]”
+C:\Users\TomaszMorawski\source\repos\mastermind\mastermind\main.cpp(218,59): error C3863: nie można przydzielać typu tablicy „char [len+1]”
