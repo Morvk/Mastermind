@@ -4,7 +4,7 @@ using namespace std;
 #include <string>
 #include <vector>
 
-class Display {
+class Display { //poliformizm wyœwietlania
 public:
     virtual void display() = 0;
 };
@@ -28,7 +28,7 @@ public:
     
     board() : count(10) {} //10 prób zgadniecia kolorow
 
-    void operator -- () {
+    void operator -- () { //operator przeci¹¿enia u¿ywany do zliczania pozosta³ych rund do koñca gry
 
         --count;
 
@@ -54,7 +54,7 @@ public:
         cout << "| " << firstPos << " | " << secondPos
             << " | " << thirdPos << " | " << fourthPos << " | ";
         cout << w << " | " << x << " | " <<
-            y << " | " << z << " |" << endl;
+            y << " | " << z << " |" << endl; //strumieniowe wyœwietlanie tablicy z wynikami
         genBoardLine();//zamkniecie rundy
 
         cout << endl << "White Pegs: " << whiteCounter;
@@ -78,16 +78,16 @@ public:
         tempArray[0] = std::move(firstPos);
         tempArray[1] = std::move(secondPos);
         tempArray[2] = std::move(thirdPos);
-        tempArray[3] = std::move(fourthPos);
+        tempArray[3] = std::move(fourthPos); // schemantyka wpisanych kolorów
         int wlk1 = sizeof(tempArray) / sizeof(tempArray[0]);
-        std::vector<char> vec1(tempArray, tempArray + wlk1);
+        std::vector<char> vec1(tempArray, tempArray + wlk1); //tworzenie wektorów u¿ywanych do porównania wprowadzonych kolorów do zaszyfrowanych
 
 
         //wstawienie wybranych przez gracza kolorow do tymczasowego arraya
-        tempCipher[0] = cipher[0];
-        tempCipher[1] = cipher[1];
-        tempCipher[2] = cipher[2];
-        tempCipher[3] = cipher[3];
+        tempCipher[0] = std::move(cipher[0]);
+        tempCipher[1] = std::move(cipher[1]);
+        tempCipher[2] = std::move(cipher[2]);
+        tempCipher[3] = std::move(cipher[3]);
 
         int wlk2 = sizeof(tempCipher) / sizeof(tempCipher[0]);
         std::vector<char> vec2(tempCipher, tempCipher + wlk2);
