@@ -64,7 +64,7 @@ int main() {
                     || input == 'c' || input == 'C') {
                     break;
                 }
-
+                
                 //pasywno-agresywny przekaz dla osób, które łamią zasady
                 cout << "Please enter a character respective of a color ONLY" << endl;
                 cin.clear();
@@ -102,11 +102,6 @@ int main() {
             }
 
         }
-
-        //pozwala użytkownikowi kontynuować, gdy jest gotowy i usuwa planszę z wyborów w tej rundzie
-        cout << endl;
-        system("read -p 'Press Enter to continue...' var");
-        cout << endl << endl;
         
 
         //wysyła wybrane przez użytkownika wartości do sprawdzenia w klasie tablicy

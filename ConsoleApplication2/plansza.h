@@ -2,8 +2,14 @@ using namespace std;
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <vector>
 
-class board {
+class Display {
+public:
+    virtual void display() = 0;
+};
+
+class board : public Display {
 
     //prywatne dane takie jak podpowiedzi oraz tablica kodu
 private:
@@ -19,15 +25,16 @@ private:
 
 
 public:
-
+    
     board() : count(10) {} //10 prób zgadniecia kolorow
+
     void operator -- () {
 
         --count;
 
     }
 
-    void display() {
+    void display() override{
         cout << count << endl;
     }
     //------------------------------------//
@@ -68,16 +75,22 @@ public:
         whiteCounter = 0;
 
         //wstawienie wybranych przez gracza kolorow do tymczasowego arraya
-        tempArray[0] = firstPos;
-        tempArray[1] = secondPos;
-        tempArray[2] = thirdPos;
-        tempArray[3] = fourthPos;
+        tempArray[0] = std::move(firstPos);
+        tempArray[1] = std::move(secondPos);
+        tempArray[2] = std::move(thirdPos);
+        tempArray[3] = std::move(fourthPos);
+        int wlk1 = sizeof(tempArray) / sizeof(tempArray[0]);
+        std::vector<char> vec1(tempArray, tempArray + wlk1);
+
 
         //wstawienie wybranych przez gracza kolorow do tymczasowego arraya
         tempCipher[0] = cipher[0];
         tempCipher[1] = cipher[1];
         tempCipher[2] = cipher[2];
         tempCipher[3] = cipher[3];
+
+        int wlk2 = sizeof(tempCipher) / sizeof(tempCipher[0]);
+        std::vector<char> vec2(tempCipher, tempCipher + wlk2);
 
         //tymczasowe arraye stworzone by mo¿na by³o nadpisywac dane
         //podczas obliczania bia³ych i czarnych "pegów"
@@ -91,31 +104,44 @@ public:
 
             // liczenie czarnych "pegów" na podstawie tego, czy dane wprowadzone przez u¿ytkownika pasuj¹ do kodu
             // dok³adnie w tej samej pozycji i w tablicach o tym samym rozmiarze
-            if (tempArray[i] == tempCipher[i]) {
+            if (vec1[i] == vec2[i]) {
                 blackCounter++;
 
                 //po policzeniu zamieniaj¹ siê w nonsens, zapewnia to ¿e nie zostan¹ policzone jeszcze raz
                 //zliczone ponownie przez wykrywacz bia³ych "pegów"
-                tempArray[i] = 'Q';
-                tempCipher[i] = 'Z';
+                vec1[i] = 'Q';
+                vec2[i] = 'Z';
             }
             else {
 
                 //szukanie bia³ych "pegów"
                 //checks if position is wrong but color is correct
                 for (int m = 0; m < 4; m++) {
-                    if (tempArray[i] == tempCipher[m] &&
-                        tempArray[m] != tempCipher[m]) {
+                    if (vec1[i] == vec2[m] &&
+                        vec1[m] != vec2[m]) {
                         whiteCounter++;
 
                         //po policzeniu zamieniaj¹ siê w nonsens, zapewnia to ¿e nie zostan¹ policzone jeszcze raz
                         //zliczone ponownie przez wykrywacz bia³ych "pegów"
-                        tempCipher[m] = 'Q';
-                        tempArray[i] = 'Z';
+                        vec1[m] = 'Q';
+                        vec2[i] = 'Z';
                         break;
                     }
+                   
                 }
+                for (int q = 0; q < 4; q++) {
+                    if (vec1[i] == vec2[q] &&
+                        vec1[q] != vec2[q]) {
+                        whiteCounter++;
 
+                        //po policzeniu zamieniaj¹ siê w nonsens, zapewnia to ¿e nie zostan¹ policzone jeszcze raz
+                        //zliczone ponownie przez wykrywacz bia³ych "pegów"
+                        vec1[q] = 'Q';
+                        vec2[i] = 'Z';
+                        break;
+                    }
+
+                }
             }
 
         }
@@ -205,15 +231,15 @@ public:
             }
         }
 
-        //DEBUG
-        //sluzy do wyawietlenia szyfru na poczatku gry, uzywane do testow
-      //  cout << endl << "DEBUG" << endl;
-       // for (int i = 0; i < 4; i++) {
-      //      cout << cipher[i];
-      //  }
+       // DEBUG
+      //sluzy do wyawietlenia szyfru na poczatku gry, uzywane do testow
+      // cout << endl << "DEBUG" << endl;
+      // for (int i = 0; i < 4; i++) {
+     //       cout << cipher[i];
+    //   }
 
         return;
-    };
+   };
 
 
     //metoda ujawniania kodu zarówno dla warunków wygranej, jak i przegranej
